@@ -1,0 +1,59 @@
+class Stack:
+    maxsize = None 
+    top = None 
+    items = None 
+
+    def __init__(self, maxsize):
+        self.maxsize = maxsize 
+        self.top = 0 
+        self.items = [-1] * self.maxsize 
+
+    def Push(self, inputItem):
+        if self.top < self.maxsize:
+                self.items[self.top] = inputItem 
+                self.top += 1                   
+        else:
+            print("스택이 가득 찼습니다!")
+
+    def Pop(self):
+        if self.top > 0:
+                self.top -= 1                   
+                data = self.items[self.top]     
+                self.items[self.top] = -1       
+                return data
+        else:
+            print("스택이 비어있습니다!")
+            return None
+                
+    def Print(self):
+        out = '스택 = ['
+        for i in range(self.top):
+            out += str(self.items[i])
+            if i < self.top - 1:
+                out += ', '
+        out += ']'
+        print(out)
+    
+if __name__ == '__main__':
+ # 스택 클래스의 인스턴스 생성
+    stack = Stack(maxsize=10)
+
+ # 1을 추가
+    stack.Push(inputItem=1)
+    stack.Print()
+
+ # 2를 추가
+    stack.Push(inputItem=2)
+    stack.Print()
+
+# pop
+    stack.Pop()
+    stack.Print()
+
+ # 3을 추가
+    stack.Push(inputItem=3)
+    stack.Print()
+
+# pop
+    stack.Pop()
+    stack.Print()
