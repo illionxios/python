@@ -1,4 +1,17 @@
-#9주차 난이도1
-with open("maze.txt", "r") as f:
-    for line in f:
-        print(line.strip())
+# 지도 행렬 (맵이항상 5x5 크기라고가정)
+maze = [[None, None, None, None, None],
+              [None, None, None, None, None],
+              [None, None, None, None, None],
+              [None, None, None, None, None],
+              [None, None, None, None, None]]
+              
+# maze.txt 읽기
+file = open('maze.txt', 'r')
+lines = file.readlines()
+file.close()
+
+for rowIndex in range(5):
+    for colIndex in range(5):
+        mazeStr = lines[rowIndex][colIndex]
+        maze[rowIndex][colIndex] = mazeStr
+print(maze)
