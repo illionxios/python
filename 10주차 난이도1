@@ -1,0 +1,65 @@
+class Queue:
+    maxsize = None # 저장할 수 있는 데이터의 수 (배열 크기)
+    rear = None # 다음에 입력(enqueue)될 데이터를 저장할 인덱스
+    items = None # 데이터를 저장할 배열
+
+ # 초기화
+    def __init__(self, maxsize):
+        self.maxsize = maxsize # 배열의 크기
+        self.rear = 0 # 데이터가 입력되면 0번 인덱스부터 저장
+        self.items = [-1] * self.maxsize # 데이터 배열을 -1로 채우기
+
+ # 큐에 맨 뒤에 새로운 값 삽입
+    def Enqueue(self, inputItem):
+        if self.rear < self.maxsize:
+                self.items[self.rear] = inputItem 
+                self.rear += 1                   
+        else:
+            print("큐가 가득 찼습니다!")
+
+ # 큐에서 맨 앞 데이터 빼기
+    def Dequeue(self):
+        if self.rear > 0:
+            data = self.items[0]
+            for i in range(1, self.rear):
+                self.items[i-1] = self.items[i]
+                
+            self.rear -= 1                   
+            self.items[self.rear] = -1       
+            return data
+        else:
+            print("큐가 비어있습니다!")
+            return None
+
+ # 스택에 들어 있는 데이터 출력
+    def Print(self):
+        out = '큐 = ['
+        for i in range(self.rear):
+            out += str(self.items[i])
+            if i < self.rear - 1:
+                out += ', '
+        out += ']'
+        print(out)
+
+if __name__ == '__main__':
+    queue = Queue(maxsize=10)
+
+
+    queue.Enqueue(inputItem=1)
+    queue.Print()
+
+
+    queue.Enqueue(inputItem=2)
+    queue.Print()
+
+
+    queue.Dequeue()
+    queue.Print()
+
+
+    queue.Enqueue(inputItem=3)
+    queue.Print()
+
+
+    queue.Dequeue()
+    queue.Print()
