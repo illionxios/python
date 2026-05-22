@@ -1,29 +1,26 @@
-def quick_sort(a, left, right,count):
-    pl = left              #왼쪽 커서 
-    pr = right             #오른쪽 커서 
-    pivot = a[(left + right) // 2]    #피벗 
-
-    while pl <= pr:
-        while a[pl] < pivot: pl += 1
-        while a[pr] > pivot: pr -= 1
-        if pl <= pr:
-            a[pl], a[pr] = a[pr], a[pl]  
-            pl += 1
-            pr -= 1
-
-    if left < pr:
-        quick_sort(a, left, pr)  
-    if pl < right:
-        quick_sort(a, pl, right)  
-
+import random
+import time
 
 num = int(input('원소 수를 입력하세요: '))
-x = [None] * num
+x = list(range(1, num + 1))
+random.shuffle(x)
 
-for i in range(num):
-    x[i] = int(input(f'x[{i}]: '))
+print('랜덤배열:', x)
 
-quick_sort(x, 0, num - 1)
+count=0
 
-print('정렬된 배열입니다:')
-print(x)
+startTime = time.perf_counter()
+for i in range(len(x)):
+    for j in range(len(x)-i-1):
+        if x[j] > x[j+1]:
+            x[j] , x[j+1] = x[j+1] , x[j]
+            count+=1
+            
+endTime = time.perf_counter()
+
+totalTime = endTime - startTime
+
+
+print('정렬된배열:', x)
+print("계산횟수:",count)
+print(f'계산시간:{totalTime:.9f}초')
