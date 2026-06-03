@@ -1,0 +1,18 @@
+text = input("전체 텍스트를 입력하세요: ")
+pattern = input("검색할 패턴을 입력하세요: ")
+
+n = len(text)     # 전체 텍스트의 길이 
+m = len(pattern)  # 찾을 패턴의 길이 
+
+print("--- 검색 결과 ---")
+
+for i in range(n - m + 1):
+    match = True  # 일단 이번 칸(i)은 일치한다고 가정하고 시작
+    
+    for j in range(m):
+        if text[i + j] != pattern[j]: # 텍스트의 글자와 패턴의 글자가 하나라도 다르면
+            match = False  # 일치하지 않으므로 실패 처리
+            break          # 더 볼 필요 없으니 안쪽 반복문 탈락
+            
+    if match == True:
+        print(f"패턴이 일치하는 shift: {i}")
